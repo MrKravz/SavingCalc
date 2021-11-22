@@ -108,13 +108,13 @@ namespace SavingCalc
         } // Перевод на русский
         private void button1_Click(object sender, EventArgs e) 
         {
-            Hide();
             Fpages.RegistrationForm.Show();
+            Hide();
         } // показываем окно регистрации
         private void button2_Click(object sender, EventArgs e) 
         {
-            Hide();
             Fpages.AuthorizationForm.Show();
+            Hide();
         } // показываем окно авторизации
         private void button3_Click(object sender, EventArgs e) 
         {

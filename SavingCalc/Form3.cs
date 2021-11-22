@@ -55,8 +55,8 @@ namespace SavingCalc
                 if (table.Rows.Count > 0)
                 {
                     Form5 SavingCalcForm = new Form5(registratedUser.ID.IdentifyNumber);
-                    Close();
                     SavingCalcForm.Show();
+                    Hide();
                 }
                 else
                 {
@@ -84,18 +84,21 @@ namespace SavingCalc
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            Hide();
+
             Fpages.RegistrationForm.Show();
+            Hide();
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Hide();
+
             Fpages.ReceiveForm.Show();
+            Hide();
         }
         private void button4_Click(object sender, EventArgs e)
         {
-            Hide();
+
             Fpages.MainForm.Show();
+            Hide();
         } 
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {

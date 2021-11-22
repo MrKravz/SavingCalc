@@ -128,8 +128,8 @@ namespace SavingCalc
                     label3.Visible = true;
                     textBox1.Clear();
                     textBox2.Clear();
-                    Hide();
                     Fpages.AuthorizationForm.Show();
+                    Hide();
                 }
                 else
                 {
@@ -160,9 +160,8 @@ namespace SavingCalc
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Form3 AuthorizationForm = new Form3();
-            Close();
-            AuthorizationForm.Show();
+            Fpages.AuthorizationForm.Show();
+            Hide();
         }
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {

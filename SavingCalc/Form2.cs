@@ -162,13 +162,14 @@ namespace SavingCalc
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            Hide();
+
             Fpages.AuthorizationForm.Show();
+            Hide();
         }
         private void button3_Click(object sender, EventArgs e)
         {
-            Hide();
             Fpages.MainForm.Show();
+            Hide();
         }
         private void englishToolStripMenuItem_Click(object sender, EventArgs e)
         {
