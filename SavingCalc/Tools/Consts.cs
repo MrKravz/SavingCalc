@@ -12,5 +12,6 @@ namespace SavingCalc.Tools
         public static string language { get; set; } = default;
         public static int ID { get; set; } = default;
         public static int recoveryCode { get; set; } = default;
+        public static bool IsVerified = default;
     }
 }

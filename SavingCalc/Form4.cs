@@ -39,12 +39,19 @@ namespace SavingCalc
                     languageToolStripMenuItem.Text = "Язык";
                 }
             }
+            if (Consts.IsVerified)
+            {
+                button1.Visible = false;
+                button2.Visible = true;
+                textBox2.Visible = true;
+                label1.Visible = false;
+                label2.Visible = true;
+                label3.Visible = true;
+                label3.Visible = false;
+            }
         }
         private void button1_Click(object sender, EventArgs e)
         {
-            BinaryReader b = new BinaryReader(File.Open(Consts.path, FileMode.Open));
-            int language = b.ReadInt32();
-            b.Close();
             try
             {
                 Consts.ID = Convert.ToInt32(textBox1.Text);
@@ -62,20 +69,12 @@ namespace SavingCalc
                 adapter.Fill(table);
                 if (table.Rows.Count > 0)
                 {
-                    button1.Visible = false;
-                    button2.Visible = true;
-                    textBox2.Visible = true;
-                    textBox1.Clear();
                     textBox2.Clear();
-                    label1.Visible = false;
-                    label2.Visible = true;
-                    label3.Visible = true;
-                    label3.Visible = false;
                     textBox1.Clear();
                 }
                 else
                 {
-                    if (language == 1)
+                    if (Consts.language == "Русский")
                     {
                         MessageBox.Show("Мы не можем найти ваш аккаунт, пожалуйста проверьте введенную информацию или зарегестрируйтесь", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -86,23 +85,20 @@ namespace SavingCalc
                     textBox1.Clear();
                 }
             }
-            catch (Exception)
+            catch (Exception ex)
             {
-                if (language == 1)
+                if (Consts.language == "Русский")
                 {
-                    MessageBox.Show("Вы ввели неверные данные", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.ToString(), "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
                 else
                 {
-                    MessageBox.Show("You enter incorrect data", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show(ex.ToString(), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
         private void button2_Click(object sender, EventArgs e)
         {
-            BinaryReader b = new BinaryReader(File.Open(Consts.path, FileMode.Open));
-            int language = b.ReadInt32();
-            b.Close();
             if (textBox1.Text == textBox2.Text)
             {
                 string newPass = Convert.ToString(textBox2.Text);
@@ -113,7 +109,7 @@ namespace SavingCalc
                 db.openConnection();
                 if (command.ExecuteNonQuery() == 1)
                 {
-                    if (language == 1)
+                    if (Consts.language == "Русский")
                     {
                         MessageBox.Show("Вы успешно сменили пароль.", "Успешно", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
@@ -121,6 +117,7 @@ namespace SavingCalc
                     {
                         MessageBox.Show("You successfully change password.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
+                    Consts.IsVerified = false;
                     button1.Visible = true;
                     button2.Visible = false;
                     textBox1.Visible = true;
@@ -131,13 +128,12 @@ namespace SavingCalc
                     label3.Visible = true;
                     textBox1.Clear();
                     textBox2.Clear();
-                    Form3 AuthorizationForm = new Form3();
-                    Close();
-                    AuthorizationForm.Show();
+                    Hide();
+                    Fpages.AuthorizationForm.Show();
                 }
                 else
                 {
-                    if (language == 1)
+                    if (Consts.language == "Русский")
                     {
                         MessageBox.Show("Мы не смогли сменить ваш пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
@@ -152,7 +148,7 @@ namespace SavingCalc
             }
             else
             {
-                if (language == 1)
+                if (Consts.language == "Русский")
                 {
                     MessageBox.Show("Мы не смогли сменить ваш пароль", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
